@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nchu.greenfarm.mappers.OrderOneMapper">
+  <resultMap id="BaseResultMap" type="com.nchu.greenfarm.model.OrderOne">
+    <id column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="order_time" jdbcType="TIMESTAMP" property="orderTime" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="order_describe" jdbcType="VARCHAR" property="orderDescribe" />
+    <result column="order_money" jdbcType="DOUBLE" property="orderMoney" />
+    <result column="order_status" jdbcType="INTEGER" property="orderStatus" />
+    <result column="order_rendtime" jdbcType="TIMESTAMP" property="orderRendtime" />
+    <result column="order_num" jdbcType="INTEGER" property="orderNum" />
+    <result column="out_trade_no" jdbcType="VARCHAR" property="outTradeNo" />
+    <result column="produce_id" jdbcType="INTEGER" property="produceId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    order_id, order_time, user_id, order_describe, order_money, order_status, order_rendtime,
+    order_num, out_trade_no, produce_id
+  </sql>
+  <select id="selectUserById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from orders
+    where user_id = #{orderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from orders
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyProperty="order_id" useGeneratedKeys="true" parameterType="com.nchu.greenfarm.model.OrderOne">
+    insert into orders (order_id, order_time, user_id,
+      order_describe, order_money, order_status,
+      order_rendtime, order_num, out_trade_no,
+      produce_id)
+    values (#{orderId,jdbcType=INTEGER}, #{orderTime,jdbcType=TIMESTAMP}, #{userId,jdbcType=INTEGER},
+      #{orderDescribe,jdbcType=VARCHAR}, #{orderMoney,jdbcType=DOUBLE}, #{orderStatus,jdbcType=INTEGER},
+      #{orderRendtime,jdbcType=TIMESTAMP}, #{orderNum,jdbcType=INTEGER}, #{outTradeNo,jdbcType=VARCHAR},
+      #{produceId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.nchu.greenfarm.model.OrderOne">
+    insert into orders
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="orderTime != null">
+        order_time,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="orderDescribe != null">
+        order_describe,
+      </if>
+      <if test="orderMoney != null">
+        order_money,
+      </if>
+      <if test="orderStatus != null">
+        order_status,
+      </if>
+      <if test="orderRendtime != null">
+        order_rendtime,
+      </if>
+      <if test="orderNum != null">
+        order_num,
+      </if>
+      <if test="outTradeNo != null">
+        out_trade_no,
+      </if>
+      <if test="produceId != null">
+        produce_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="orderTime != null">
+        #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="orderDescribe != null">
+        #{orderDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="orderMoney != null">
+        #{orderMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="orderStatus != null">
+        #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderRendtime != null">
+        #{orderRendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderNum != null">
+        #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="outTradeNo != null">
+        #{outTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="produceId != null">
+        #{produceId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByOutTradeNo"  parameterType="com.nchu.greenfarm.model.OrderOne" >
+  update orders
+  set order_time = #{orderTime,jdbcType=TIMESTAMP},
+  order_status = #{orderStatus,jdbcType=INTEGER}
+  where user_id =  #{userId,jdbcType=INTEGER} and out_trade_no = #{outTradeNo,jdbcType=VARCHAR}
+
+</update>
+  <update id="updateByorderId" parameterType="com.nchu.greenfarm.model.OrderOne" >
+  update orders set order_time = #{orderTime,jdbcType=TIMESTAMP},
+  order_num = #{orderNum,jdbcType=INTEGER},
+  order_money = #{orderMoney,jdbcType=DOUBLE}
+  where order_id = #{orderId,jdbcType=INTEGER}
+  and out_trade_no = #{outTradeNo,jdbcType=VARCHAR}
+
+</update>
+</mapper>

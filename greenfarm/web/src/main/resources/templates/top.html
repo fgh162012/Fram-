@@ -1,0 +1,116 @@
+<!DOCTYPE HTML >
+<html>
+<head>
+<title>汉中特色农业综合服务平台</title>
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="This is my page">
+<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+
+	<link href="assets/css/amazeui.css"
+		  rel="stylesheet" type="text/css" />
+	<link href="assets/css/admin.css"
+		  rel="stylesheet" type="text/css" />
+
+	<link href="basic/css/demo.css"
+		  rel="stylesheet" type="text/css" />
+
+	<link href="css/hmstyle.css"
+		  rel="stylesheet" type="text/css" />
+	<link href="css/skin.css"
+		  rel="stylesheet" type="text/css" />
+
+	<script
+			src="assets/js/jquery.min.js"></script>
+	<script
+			src="assets/js/amazeui.min.js"></script>
+
+
+
+</head>
+
+<body>
+	<div class="hmtop">
+		<!--顶部导航条 -->
+		<div class="am-container header">
+			<ul class="message-r">
+
+				<div class="topMessage">
+					<div class="menu-hd">
+					<!--	<c:if test="${empty user }">-->
+							<a href="${pageContext.request.contextPath }/user/toLogin.action"
+								target="_top" class="h"><i class="am-icon-user am-icon-fw"></i>登录</a> 
+							&nbsp;&nbsp;
+							<a href="${pageContext.request.contextPath }/user/toRegister.action"
+								target="_top"><i class="am-icon-hand-o-right am-icon-fw"></i>免费注册</a>
+						<!--</c:if>
+						<c:if test="${not empty user }">-->
+							欢迎访问，${user.user_name }
+							&nbsp;&nbsp;
+							<a href="${pageContext.request.contextPath }/user/logout.action"
+								target="_top" class="h"><i class="am-icon-user am-icon-fw"></i>退出</a>
+							<a id="mc-menu-hd"
+								href="${pageContext.request.contextPath }/jsp/car.jsp"
+								target="_top"> <i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span>
+								<strong id="J_MiniCartNum" class="h"></strong>
+							</a>
+						<!--</c:if>-->
+					</div>
+				</div>
+
+			</ul>
+		</div>
+
+		<!--悬浮搜索框-->
+
+		<div class="nav white">
+			<div class="logoBig">
+				<li><img
+					src="images/logo.jpg" /></li>
+			</div>
+
+			<div class="search-bar pr">
+				<a name="index_none_header_sysc" href="#"></a>
+				<form action="#">
+					<input id="searchInput" name="index_none_header_sysc" type="text"
+						placeholder="搜索" autocomplete="off"> <input
+						id="ai-topsearch" class="submit am-btn" value="搜索" index="1"
+						type="submit">
+				</form>
+			</div>
+		</div>
+
+		<div class="clear"></div>
+	</div>
+
+	<div class="shopNav">
+		<div class="slideall">
+			<div class="nav-cont">
+				<ul>
+					<li class="qc"><a
+						href="#">首页</a></li>
+					<li class="qc"><a
+						href="">农产品</a></li>
+					<li class="qc"><a
+						href="">农场租赁</a></li>
+					<li class="qc last"><a href="">我的订单</a></li>
+				</ul>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<hr/>
+	
+
+
+
+	<script>
+        window.jQuery || document.write('<script src="basic/js/jquery.min.js "><\/script>');
+	</script>
+	<script type="text/javascript " src="basic/js/quick_links.js "></script>
+</body>
+</html>

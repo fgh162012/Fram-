@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>用户登录</title>
+
+<!--引入bootstrap的CSS文件 -->
+<link rel="stylesheet" th:href="@{css/bootstrap.min.css}" type="text/css" />
+	<link rel="stylesheet" th:href="@{css/style.css}" type="text/css" />
+<!--引入jquery的js文件-->
+<script type="text/javascript" th:src="@{js/jquery-1.12.4.min.js}"></script>
+
+</head>
+
+<body>
+	<div class="container">
+		
+<div >&nbsp;</div>
+		<div class="container box">
+			<div class="row">
+				<div class="col-md-6"></div>
+
+				<div class="col-md-6">
+					<div
+						style="width:460px;border:1px solid #E7E7E7;padding:20px 0 20px 30px;border-radius:5px;margin-top:60px;background:#fff;">
+						<font>用户登录</font>
+
+						<div>&nbsp;</div>
+						<form method="post" th:action="@{/login}" class="form-horizontal">
+							<div class="form-group">
+								<label for="username" class="col-sm-3 control-label">用户名</label>
+								<div class="col-sm-7">
+									<input type="text" class="form-control" id="username" name="username"
+										placeholder="请输入手机号">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="password" class="col-sm-3 control-label">密码</label>
+								<div class="col-sm-7">
+									<input type="password" class="form-control" id="password" name="password"
+										placeholder="请输入密码">
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<div class="col-sm-offset-3 col-sm-10">
+									<input type="submit" width="100" value="登录"  class="login">
+								&nbsp;<input type="reset" width="100" value="重置" class="register">
+								</div>
+								
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <title>订单</title>
+</head>
+<body>
+<table class="table table-striped">
+    <caption>订单信息</caption>
+    <thead>
+    <tr>
+        <th>订单名称</th>
+        <th>订单详情</th>
+        <th>订单金额</th>
+        <th>订单状态</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order : ${list}">
+    <form action="/alipay/submit" method="post" th:object="${order}">
+        <input th:value="${order.orderNum}" type="hidden" name="orderNum">
+        <input th:value="${order.orderDescribe}" type="hidden" name="orderDescribe">
+        <input th:value="${order.orderMoney}" type="hidden" name="orderMoney">
+        <input th:value="${order.orderStatus}" type="hidden" name="orderStatus">
+        <input th:value="${order.outTradeNo}" type="hidden" name="outTradeNo">
+        <td th:text="${order.orderNum}"></td>
+        <td th:text="${order.orderDescribe}"></td>
+        <td th:text="${order.orderMoney}"></td>
+        <td ><INPUT th:type="${order.orderStatus} == '1'?'button':'submit'"
+        th:class="${order.orderStatus} == '1'?'btn btn-success':'btn btn-danger'"
+                    th:value="${order.orderStatus} == '1'?'已支付':'待支付'"></td>
+    </form>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

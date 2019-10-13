@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nchu.greenfarm.mappers.UserMapper">
+  <resultMap id="BaseResultMap" type="com.nchu.greenfarm.model.User">
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_email" jdbcType="VARCHAR" property="userEmail" />
+    <result column="user_telephone" jdbcType="VARCHAR" property="userTelephone" />
+    <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
+    <result column="user_type" jdbcType="INTEGER" property="userType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, user_name, user_email, user_telephone,user_password, user_type
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where user_name = #{userName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="user_id" parameterType="com.nchu.greenfarm.model.User">
+    insert into user (user_id, user_name, user_email,
+      user_telephone, user_password, user_type
+      )
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR},
+      #{userTelephone,jdbcType=VARCHAR}, Md5(#{userPassword,jdbcType=VARCHAR}), #{userType,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.nchu.greenfarm.model.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="userEmail != null">
+        user_email,
+      </if>
+      <if test="userTelephone != null">
+        user_telephone,
+      </if>
+      <if test="userPassword != null">
+        user_password,
+      </if>
+      <if test="userType != null">
+        user_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null">
+        #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userTelephone != null">
+        #{userTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null">
+        #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null">
+        #{userType,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+
+</mapper>
